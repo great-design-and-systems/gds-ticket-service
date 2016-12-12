@@ -8,7 +8,7 @@ export default class RemoveTicketById {
             if (err) {
                 global.gdsLogger.error(err);
                 callback({
-                    message: 'Failed saving ticket'
+                    message: 'Failed removing ticket'
                 });
             } else {
                 callback();

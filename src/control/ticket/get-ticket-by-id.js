@@ -4,14 +4,14 @@ export default class GetTicketById {
   constructor(ticketId, callback) {
     TicketModel.findOne({
       _id: ticketId
-    }, (err, result) => {
-      if (err) {
+    }, (err, ticket) => {
+      if (err || !ticket) {
         global.gdsLogger.logError(err);
         callback({
-          message: 'Failed getting an ticket'
+          message: 'Failed getting a ticket'
         });
       } else {
-        callback(undefined, result);
+        callback(undefined, ticket);
       }
     });
   }

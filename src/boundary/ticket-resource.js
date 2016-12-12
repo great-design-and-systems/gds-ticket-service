@@ -32,7 +32,7 @@ export default class TicketResource {
           createDomain.addGet('getTicketById', 'http://' + req.headers.host + API + 'get-ticket-by-id/' + result._id);
           createDomain.addPut('updateTicket', 'http://' + req.headers.host + API + 'update-ticket/' + result._id);
           createDomain.addDelete('removeTicket', 'http://' + req.headers.host + API + 'remove-ticket/' + result._id);
-          createDomain.addGet('getTicketByName', 'http://' + req.headers.host + API + 'get-ticket-by-name/' + result.name);
+          createDomain.addGet('getTicketByName', 'http://' + req.headers.host + API + 'get-ticket-by-number/' + result.ticketNo);
           res.status(200).send(createDomain);
         }
       });

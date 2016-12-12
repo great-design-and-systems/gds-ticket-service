@@ -7,7 +7,7 @@ export default class GetTicketByNumber {
       if (err || !ticket) {
         global.gdsLogger.logError(err);
         callback({
-          message: 'Failed getting an ticket'
+          message: 'Failed getting a ticket'
         });
       } else {
         callback(undefined, ticket);

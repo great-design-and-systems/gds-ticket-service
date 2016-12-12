@@ -27,13 +27,15 @@ const TicketSchema = mongoose.Schema({
     default: Date.now
   }
 });
-TicketSchema.plugin(mongoosePaginate);
+
+autoIncrement.initialize(mongoose.connection);
 TicketSchema.plugin(autoIncrement.plugin, {
   model: 'ticket',
   field: 'ticketNo',
   startAt: 100000,
   incrementBy: 1
 });
+TicketSchema.plugin(mongoosePaginate);
 
 const TicketModel = mongoose.model('ticket', TicketSchema);
 
