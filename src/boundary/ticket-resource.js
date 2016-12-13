@@ -18,6 +18,7 @@ export default class TicketResource {
       domain.addPut('updateTicket', 'http://' + req.headers.host + API + 'update-ticket/:ticketId');
       domain.addDelete('removeTicket', 'http://' + req.headers.host + API + 'remove-ticket/:ticketId');
       domain.addGet('getTicketByNumber', 'http://' + req.headers.host + API + 'get-ticket-by-number/:ticketNo');
+      domain.addPost('createVerificationLink', 'http://' + req.headers.host + API + 'create-verification-link');
       res.status(200).send(domain);
     });
 
@@ -103,6 +104,19 @@ export default class TicketResource {
           const domain = new GDSDomainDTO('GET-TICKET-BY-NUMBER', result);
           domain.addPut('updateTicket', 'http://' + req.headers.host + API + 'update-ticket/' + result._id);
           domain.addDelete('removeTicket', 'http://' + req.headers.host + API + 'remove-ticket/' + result._id);
+          res.status(200).send(domain);
+        }
+      });
+    });
+
+    app.post(API + 'create-verification-link', (req, res) => {
+      ticketService.createVerificationLink(req.body, (err, result) => {
+        if (err) {
+          res.status(500).send(new GDSDomainDTO('ERROR_MESSAGE',
+            err.message
+          ))
+        } else {
+          const domain = new GDSDomainDTO('CREATE-VERIFICATION-LINK', result);
           res.status(200).send(domain);
         }
       });
