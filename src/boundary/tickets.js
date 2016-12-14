@@ -5,6 +5,7 @@ import UpdateTicket from '../control/ticket/update-ticket';
 import RemoveTicketById from '../control/ticket/remove-ticket-by-id';
 import GetTicketByNumber from '../control/ticket/get-ticket-by-number';
 import CreateVerificationLink from '../control/verification/create-verification-link';
+import VerifyToken from '../control/verification/verify-token';
 export default class TicketService {
 
   createTicket(data, callback) {
@@ -28,5 +29,8 @@ export default class TicketService {
   }
   createVerificationLink(data, callback) {
     new CreateVerificationLink(data, callback);
+  }
+  verifyToken(token, callback) {
+    new VerifyToken(token, callback);
   }
 }

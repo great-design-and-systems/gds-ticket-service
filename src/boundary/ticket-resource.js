@@ -19,6 +19,7 @@ export default class TicketResource {
       domain.addDelete('removeTicket', 'http://' + req.headers.host + API + 'remove-ticket/:ticketId');
       domain.addGet('getTicketByNumber', 'http://' + req.headers.host + API + 'get-ticket-by-number/:ticketNo');
       domain.addPost('createVerificationLink', 'http://' + req.headers.host + API + 'create-verification-link');
+      domain.addGet('verifyToken', 'http://' + req.headers.host + API + 'verify-token');
       res.status(200).send(domain);
     });
 
@@ -122,5 +123,17 @@ export default class TicketResource {
       });
     });
 
+    app.get(API + 'verify-token/:token', (req, res) => {
+      ticketService.verifyToken(req.params.token, (err, result) => {
+        if (err) {
+          res.status(500).send(new GDSDomainDTO('ERROR_MESSAGE',
+            err.message
+          ))
+        } else {
+          const domain = new GDSDomainDTO('VERIFY-TOKEN', result);
+          res.status(200).send(domain);
+        }
+      });
+    });
   }
 }
